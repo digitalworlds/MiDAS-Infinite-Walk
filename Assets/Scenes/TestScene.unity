@@ -478,8 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a8a11d9e6e24116a5fb4396bd88990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndlessRunnerEngine
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
   head: {fileID: 411150683}
   debugText: {fileID: 0}
   minBlocksAhead: 5
