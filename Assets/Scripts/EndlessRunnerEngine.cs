@@ -46,6 +46,7 @@ public class EndlessRunnerEngine : MonoBehaviour
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.name = "DebugSphere";
+        sphere.SetActive(false);
         sphere.transform.SetParent(transform);
         sphere.transform.localScale = Vector3.one * 0.2f;
         sphere.GetComponent<Renderer>().material.color = Color.red;
