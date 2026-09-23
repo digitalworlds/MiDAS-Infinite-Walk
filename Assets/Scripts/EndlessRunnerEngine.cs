@@ -28,6 +28,8 @@ public class EndlessRunnerEngine : MonoBehaviour
     public float areaMinZ = -5f;
     public float areaMaxZ = 5f;
 
+    public bool showDebugSpace = true;
+
     public Block CurrentBlock => currentBlock;
 
     private Transform debugSphere;
@@ -66,7 +68,7 @@ public class EndlessRunnerEngine : MonoBehaviour
             startPos.z = direction.y * Block.Size * (-0.5f);
         }
         
-        Block startBlock = new Block(startPos, direction, BlockType.Straight, transform);
+        Block startBlock = new Block(startPos, direction, BlockType.Straight, showDebugSpace, transform);
 
         ConstrainedBlockGenerator generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, transform);
 

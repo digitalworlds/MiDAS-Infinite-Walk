@@ -44,14 +44,16 @@ public class Block
     // The direction the next block in the chain enters with.
     public readonly Vector2 ExitDirection;
 
-    public Block(Vector3 start, Vector2 direction, BlockType type, Transform parent = null, string name = "Block")
-        : this(0, start, direction, type, parent, name)
+    private readonly bool showDebugSpace;
+
+    public Block(Vector3 start, Vector2 direction, BlockType type, bool showDebugSpace, Transform parent = null, string name = "Block")
+        : this(0, start, direction, type, showDebugSpace, parent, name)
     {
     }
 
     // Chains off "previous": starts where previous's exit is (previous.Type, already fixed, determines where).
     public Block(Block previous, BlockType type, Transform parent = null, string name = "Block")
-        : this(previous.id + 1, previous.ExitPosition, previous.ExitDirection, type, parent, name)
+        : this(previous.id + 1, previous.ExitPosition, previous.ExitDirection, type, previous.showDebugSpace, parent, name)
     {
         previous.Next = this;
         Previous = previous;
@@ -62,14 +64,16 @@ public class Block
     public static Block Prepend(Block next, BlockType type, Transform parent = null, string name = "Block")
     {
         ComputeEntryFromExit(next.StartPosition, next.Direction, type, out Vector3 start, out Vector2 direction);
-        Block block = new Block(next.id - 1, start, direction, type, parent, name);
+        Block block = new Block(next.id - 1, start, direction, type, next.showDebugSpace, parent, name);
         block.Next = next;
         next.Previous = block;
         return block;
     }
 
-    private Block(int id, Vector3 start, Vector2 direction, BlockType type, Transform parent, string name)
+    private Block(int id, Vector3 start, Vector2 direction, BlockType type, bool showDebugSpace, Transform parent, string name)
     {
+        this.showDebugSpace = showDebugSpace;
+    
         this.id = id;
         startPosition = start;
         direction2D = direction;
@@ -83,6 +87,8 @@ public class Block
         GameObject.transform.SetParent(parent);
         GameObject.transform.position = startPosition;
         GameObject.transform.rotation = Quaternion.LookRotation(new Vector3(Direction.x, 0f, Direction.y), Vector3.up);
+
+        if(this.showDebugSpace==false)return;
 
         LineRenderer lineRenderer = GameObject.AddComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
