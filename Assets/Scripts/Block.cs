@@ -190,7 +190,10 @@ public class Block
         UpdateWallMesh(meshFilter.mesh, from, to);
 
         MeshRenderer meshRenderer = wall.AddComponent<MeshRenderer>();
-        meshRenderer.material = new Material(Shader.Find("Standard"));
+        // "Standard" is a Built-in Render Pipeline shader; this project uses URP, where it doesn't
+        // exist, so Shader.Find would return null and Unity would render the wall magenta.
+        Shader wallShader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard");
+        meshRenderer.material = new Material(wallShader);
         meshRenderer.material.color = wallColor;
         return meshFilter;
     }

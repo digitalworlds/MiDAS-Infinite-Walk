@@ -52,7 +52,20 @@ public class EndlessRunnerEngine : MonoBehaviour
         debugSphere = sphere.transform;
 
         Vector2 direction = Vector2.up;
-        Block startBlock = new Block(new Vector3(direction.x,0,direction.y)*Block.Size*(-0.5f), direction, BlockType.Straight, transform);
+
+        //Move the starting position to better occupy the space.
+        Vector3 startPos=new Vector3(0,0,0);
+        if(Math.Floor(areaMaxX - areaMinX) % 2 == 1)
+        {
+            startPos.x = direction.x * Block.Size * (-0.5f);
+        }
+       
+        if(Math.Floor(areaMaxZ - areaMinZ) % 2 == 1)
+        {
+            startPos.z = direction.y * Block.Size * (-0.5f);
+        }
+        
+        Block startBlock = new Block(startPos, direction, BlockType.Straight, transform);
 
         ConstrainedBlockGenerator generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, transform);
 

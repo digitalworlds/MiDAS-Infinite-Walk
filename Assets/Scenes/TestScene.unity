@@ -482,10 +482,10 @@ MonoBehaviour:
   debugText: {fileID: 0}
   minBlocksAhead: 5
   constrainedBlockCount: 50
-  areaMinX: -5
-  areaMaxX: 5
-  areaMinZ: -5
-  areaMaxZ: 5
+  areaMinX: -3
+  areaMaxX: 3
+  areaMinZ: -3
+  areaMaxZ: 3
 --- !u!4 &1632230463
 Transform:
   m_ObjectHideFlags: 0

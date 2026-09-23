@@ -26,20 +26,23 @@ public class WalkSimulator : MonoBehaviour
 
     void Start()
     {
-        //Get the current block from the EndlessRunnerEngine
-        if (eng != null) currentBlock = eng.CurrentBlock;
-        else Debug.LogError("WalkSimulator: EndlessRunnerEngine component not found on endlessRunnerObject.");
     }
 
     void Update()
     {
-        if (endlessRunnerObject == null || eng == null || eng.head == null || currentBlock == null) return;
-        else Debug.Log("WalkSimulator: currentBlock = " + currentBlock + ", distanceIntoBlock = " + distanceIntoBlock);
+        if (endlessRunnerObject == null || eng == null || eng.head == null) 
+        {
+            Debug.Log("endlessRunnerObject:"+endlessRunnerObject+", eng:"+eng+", eng.head:"+eng.head+", currentBlock:"+currentBlock);
+            return;
+        }
 
+        if (eng != null) {
+            currentBlock = eng.CurrentBlock;
+        } else return;
 
         distanceIntoBlock += speed * Time.deltaTime;
 
-        Debug.Log("WalkSimulator: distanceIntoBlock = " + distanceIntoBlock + ", currentBlock.Length = " + currentBlock.Length);
+        //Debug.Log("WalkSimulator: distanceIntoBlock = " + distanceIntoBlock + ", currentBlock.Length = " + currentBlock.Length);
         // Advance to the next block once we've walked past the end of the current one.
         while (currentBlock.Next != null && distanceIntoBlock >= currentBlock.Length)
         {
