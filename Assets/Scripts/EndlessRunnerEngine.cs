@@ -74,6 +74,7 @@ public class EndlessRunnerEngine : MonoBehaviour
 
         lastBlock = generator.GenerateForward(startBlock, constrainedBlockCount);
         firstBlock = generator.GenerateBackward(startBlock, constrainedBlockCount);
+        Debug.Log("Blocks generated");
 
         currentBlock = startBlock;
         currentBlock.SetHighlighted(true);

@@ -17,7 +17,7 @@ public class Block
     private readonly int id;
     private readonly Vector3 startPosition;
     private readonly Vector2 direction2D; // entry direction, (x, z) in the flat plane
-    private readonly BlockType type;
+    public readonly BlockType type;
 
     private LineRenderer[] wallLines;
     private MeshFilter[] wallMeshFilters;
