@@ -58,12 +58,12 @@ public class EndlessRunnerEngine : MonoBehaviour
 
         //Move the starting position to better occupy the space.
         Vector3 startPos=new Vector3(0,0,0);
-        if(Math.Floor(areaMaxX - areaMinX) % 2 == 1)
+        if(Math.Floor((areaMaxX - areaMinX)/1.2) % 2 == 1)
         {
             startPos.x = direction.x * Block.Size * (-0.5f);
         }
        
-        if(Math.Floor(areaMaxZ - areaMinZ) % 2 == 1)
+        if(Math.Floor((areaMaxZ - areaMinZ)/1.2) % 2 == 1)
         {
             startPos.z = direction.y * Block.Size * (-0.5f);
         }

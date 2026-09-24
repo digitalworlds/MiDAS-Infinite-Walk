@@ -22,38 +22,74 @@ public class LevelScript : MonoBehaviour
             Debug.Log("Processing block: " + b.Id);
             if(b.type == BlockType.TurnLeft)
             {
-                GameObject obj = Instantiate(leftTurns[Random.Range(0, leftTurns.Length)]);
-                obj.transform.localPosition = new Vector3(0f,0f,0.6f);
-                obj.transform.localRotation = Quaternion.identity;
-                obj.transform.localScale = Vector3.one;
-                obj.transform.SetParent(b.GameObject.transform, false);
-                obj.SetActive(true);
-                Debug.Log("Instantiated left turn for block: " + b.Id);
+                CreateLeftTurn(b);
             }
             else if(b.type == BlockType.TurnRight)
             {
-                GameObject obj = Instantiate(rightTurns[Random.Range(0, rightTurns.Length)]);
-                obj.transform.localPosition = new Vector3(0f,0f,0.6f);
-                obj.transform.localRotation = Quaternion.identity;
-                obj.transform.localScale = Vector3.one;
-                obj.transform.SetParent(b.GameObject.transform, false);
-                obj.SetActive(true);
-                Debug.Log("Instantiated right turn for block: " + b.Id);
+                CreateRightTurn(b);
             }
             else if(b.type == BlockType.Straight)
             {
-                GameObject obj = Instantiate(Straights[Random.Range(0, Straights.Length)]);
-                obj.transform.localPosition = new Vector3(0f,0f,0.6f);
-                obj.transform.localRotation = Quaternion.identity;
-                obj.transform.localScale = Vector3.one;
-                obj.transform.SetParent(b.GameObject.transform, false);
-                obj.SetActive(true);
-                Debug.Log("Instantiated straight for block: " + b.Id);
+                CreateStraight(b);
             }
             b=b.Next;
         }
 
+        b=eng.CurrentBlock;
+        b=b.Previous;
+
+        while (b != null)
+        {
+            Debug.Log("Processing block: " + b.Id);
+            if(b.type == BlockType.TurnLeft)
+            {
+                CreateLeftTurn(b);
+            }
+            else if(b.type == BlockType.TurnRight)
+            {
+                CreateRightTurn(b);
+            }
+            else if(b.type == BlockType.Straight)
+            {
+                CreateStraight(b);
+            }
+            b=b.Previous;
+        }
+
         //GameObject obj = Instantiate(library[permutations[i]]);
+    }
+
+    void CreateLeftTurn(Block b)
+    {
+        GameObject obj = Instantiate(leftTurns[Random.Range(0, leftTurns.Length)]);
+        obj.transform.localPosition = new Vector3(0f,0f,0.6f);
+        obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
+        obj.transform.SetParent(b.GameObject.transform, false);
+        obj.SetActive(true);
+        Debug.Log("Instantiated left turn for block: " + b.Id);
+    }
+
+    void CreateRightTurn(Block b)
+    {
+        GameObject obj = Instantiate(rightTurns[Random.Range(0, rightTurns.Length)]);
+        obj.transform.localPosition = new Vector3(0f,0f,0.6f);
+        obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
+        obj.transform.SetParent(b.GameObject.transform, false);
+        obj.SetActive(true);
+        Debug.Log("Instantiated right turn for block: " + b.Id);
+    }
+
+    void CreateStraight(Block b)
+    {
+        GameObject obj = Instantiate(Straights[Random.Range(0, Straights.Length)]);
+        obj.transform.localPosition = new Vector3(0f,0f,0.6f);
+        obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
+        obj.transform.SetParent(b.GameObject.transform, false);
+        obj.SetActive(true);
+        Debug.Log("Instantiated straight for block: " + b.Id);
     }
 
     // Update is called once per frame
