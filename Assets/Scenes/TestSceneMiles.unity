@@ -281,7 +281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444897717}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9df50751ce3d04163903193196377758, type: 3}
   m_Name: 
@@ -495,10 +495,10 @@ MonoBehaviour:
   debugText: {fileID: 0}
   minBlocksAhead: 5
   constrainedBlockCount: 500
-  areaMinX: -5
-  areaMaxX: 5
-  areaMinZ: -5
-  areaMaxZ: 5
+  areaMinX: -3.2
+  areaMaxX: 3.2
+  areaMinZ: -3.2
+  areaMaxZ: 3.2
   showDebugSpace: 0
 --- !u!4 &743622116
 Transform:
