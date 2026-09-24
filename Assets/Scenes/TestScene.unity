@@ -167,6 +167,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1b93d6faeb87d55418cce71178db6d51, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1b93d6faeb87d55418cce71178db6d51, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1b93d6faeb87d55418cce71178db6d51, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
     - target: {fileID: 919132149155446097, guid: 1b93d6faeb87d55418cce71178db6d51, type: 3}
       propertyPath: m_Name
       value: StraightV3
@@ -229,6 +241,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a0907f7ac5d41da4191bcbe1119c6ea4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a0907f7ac5d41da4191bcbe1119c6ea4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a0907f7ac5d41da4191bcbe1119c6ea4, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
     - target: {fileID: 919132149155446097, guid: a0907f7ac5d41da4191bcbe1119c6ea4, type: 3}
       propertyPath: m_Name
       value: StraightV4
@@ -396,6 +420,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 558444a4819a1f4459f5fdf5812aa34d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 558444a4819a1f4459f5fdf5812aa34d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 558444a4819a1f4459f5fdf5812aa34d, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
     - target: {fileID: 919132149155446097, guid: 558444a4819a1f4459f5fdf5812aa34d, type: 3}
       propertyPath: m_Name
       value: StraightV1
@@ -458,6 +494,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8188cff59bec3414b9ec42389070f7ec, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8188cff59bec3414b9ec42389070f7ec, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8188cff59bec3414b9ec42389070f7ec, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
     - target: {fileID: 919132149155446097, guid: 8188cff59bec3414b9ec42389070f7ec, type: 3}
       propertyPath: m_Name
       value: RightTurnV1
@@ -638,6 +686,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 534cff0966c86484eb5ab98f01e1a1b1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 534cff0966c86484eb5ab98f01e1a1b1, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 534cff0966c86484eb5ab98f01e1a1b1, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
     - target: {fileID: 919132149155446097, guid: 534cff0966c86484eb5ab98f01e1a1b1, type: 3}
       propertyPath: m_Name
       value: StraightV2
@@ -803,6 +863,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e4f259e9fee57ad499f4379afa365430, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: e4f259e9fee57ad499f4379afa365430, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: e4f259e9fee57ad499f4379afa365430, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4024cfe09378194f9b23edb33e4c14e, type: 2}
     - target: {fileID: 919132149155446097, guid: e4f259e9fee57ad499f4379afa365430, type: 3}
       propertyPath: m_Name
       value: LeftTurnV1
