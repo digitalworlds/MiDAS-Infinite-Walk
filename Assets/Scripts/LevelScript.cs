@@ -15,11 +15,11 @@ public class LevelScript : MonoBehaviour
     void Start()
     {
         Block b=eng.CurrentBlock;
-        Debug.Log("Current block: " + b.Id);
+        //Debug.Log("Current block: " + b.Id);
 
         while (b != null)
         {
-            Debug.Log("Processing block: " + b.Id);
+            //Debug.Log("Processing block: " + b.Id);
             if(b.type == BlockType.TurnLeft)
             {
                 CreateLeftTurn(b);
@@ -40,7 +40,7 @@ public class LevelScript : MonoBehaviour
 
         while (b != null)
         {
-            Debug.Log("Processing block: " + b.Id);
+            //Debug.Log("Processing block: " + b.Id);
             if(b.type == BlockType.TurnLeft)
             {
                 CreateLeftTurn(b);
@@ -67,7 +67,7 @@ public class LevelScript : MonoBehaviour
         obj.transform.localScale = Vector3.one;
         obj.transform.SetParent(b.GameObject.transform, false);
         obj.SetActive(true);
-        Debug.Log("Instantiated left turn for block: " + b.Id);
+        //Debug.Log("Instantiated left turn for block: " + b.Id);
     }
 
     void CreateRightTurn(Block b)
@@ -78,7 +78,7 @@ public class LevelScript : MonoBehaviour
         obj.transform.localScale = Vector3.one;
         obj.transform.SetParent(b.GameObject.transform, false);
         obj.SetActive(true);
-        Debug.Log("Instantiated right turn for block: " + b.Id);
+       // Debug.Log("Instantiated right turn for block: " + b.Id);
     }
 
     void CreateStraight(Block b)
@@ -89,7 +89,7 @@ public class LevelScript : MonoBehaviour
         obj.transform.localScale = Vector3.one;
         obj.transform.SetParent(b.GameObject.transform, false);
         obj.SetActive(true);
-        Debug.Log("Instantiated straight for block: " + b.Id);
+       // Debug.Log("Instantiated straight for block: " + b.Id);
     }
 
     // Update is called once per frame
