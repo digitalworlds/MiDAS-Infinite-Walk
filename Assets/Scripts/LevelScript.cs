@@ -1,62 +1,16 @@
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
-public class LevelScript : MonoBehaviour
+public class LevelScript : LevelCallback
 {
     public GameObject[] leftTurns;
     public GameObject[] rightTurns;
     public GameObject[] Straights;
-    private EndlessRunnerEngine eng;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        eng = GetComponent<EndlessRunnerEngine>(); 
-    }
-
+    
     void Start()
     {
-        Block b=eng.CurrentBlock;
-        //Debug.Log("Current block: " + b.Id);
 
-        while (b != null)
-        {
-            //Debug.Log("Processing block: " + b.Id);
-            if(b.type == BlockType.TurnLeft)
-            {
-                CreateLeftTurn(b);
-            }
-            else if(b.type == BlockType.TurnRight)
-            {
-                CreateRightTurn(b);
-            }
-            else if(b.type == BlockType.Straight)
-            {
-                CreateStraight(b);
-            }
-            b=b.Next;
-        }
-
-        b=eng.CurrentBlock;
-        b=b.Previous;
-
-        while (b != null)
-        {
-            //Debug.Log("Processing block: " + b.Id);
-            if(b.type == BlockType.TurnLeft)
-            {
-                CreateLeftTurn(b);
-            }
-            else if(b.type == BlockType.TurnRight)
-            {
-                CreateRightTurn(b);
-            }
-            else if(b.type == BlockType.Straight)
-            {
-                CreateStraight(b);
-            }
-            b=b.Previous;
-        }
-
-        //GameObject obj = Instantiate(library[permutations[i]]);
+       
     }
 
     void CreateLeftTurn(Block b)
@@ -90,6 +44,27 @@ public class LevelScript : MonoBehaviour
         obj.transform.SetParent(b.GameObject.transform, false);
         obj.SetActive(true);
        // Debug.Log("Instantiated straight for block: " + b.Id);
+    }
+
+    public override void show(Block b)
+    {
+        if(b.type == BlockType.TurnLeft)
+        {
+            CreateLeftTurn(b);
+        }
+        else if(b.type == BlockType.TurnRight)
+        {
+            CreateRightTurn(b);
+        }
+        else if(b.type == BlockType.Straight)
+        {
+            CreateStraight(b);
+        }
+    }
+
+    public override void hide(Block b)
+    {
+        
     }
 
     // Update is called once per frame

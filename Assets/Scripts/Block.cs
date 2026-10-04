@@ -120,6 +120,18 @@ public class Block
         BuildWalls();
     }
 
+    public void show(LevelCallback callback)
+    {
+        GameObject.SetActive(true);
+        if(callback!=null)callback.show(this);
+    }
+
+    public void hide(LevelCallback callback)
+    {
+        GameObject.SetActive(false);
+        if(callback!=null)callback.hide(this);
+    }
+
     // This tile's 4 world-space corners: [start+right, start-right, far+right, far-right], where "far" is
     // Size ahead along the entry direction. Same square regardless of Type - only the exit point differs.
     public Vector3[] GetCorners()

@@ -39,6 +39,8 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     private ConstrainedBlockGenerator generator;
 
+    private LevelCallback callback;
+
     void Awake()
     {
         transform.position = Vector3.zero;
@@ -48,6 +50,10 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     void Start()
     {
+        LevelCallback c = GetComponent<LevelCallback>(); 
+        if(c!=null && c.enabled) callback=c;
+        
+
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.name = "DebugSphere";
         sphere.SetActive(false);
@@ -153,18 +159,18 @@ public class EndlessRunnerEngine : MonoBehaviour
         currentBlock.SetHighlighted(true);
 
         Block block=currentBlock;
-        block.GameObject.SetActive(true);
+        block.show(callback);
         for(int i=0;i<minBlocksAhead;i++)
         {
             block=block.Next;
-            if(block!=null) block.GameObject.SetActive(true);
+            if(block!=null) block.show(callback);
             else break;
         }
         block=currentBlock;
         for(int i=0;i<minBlocksAhead;i++)
         {
             block=block.Previous;
-            if(block!=null) block.GameObject.SetActive(true);
+            if(block!=null) block.show(callback);
             else break;
         }
 
@@ -292,10 +298,10 @@ public class EndlessRunnerEngine : MonoBehaviour
     private void UpdateActiveWindow(bool movedForward)
     {
         Block toActivate = Advance(currentBlock, minBlocksAhead, movedForward);
-        if (toActivate != null) toActivate.GameObject.SetActive(true);
+        if (toActivate != null) toActivate.show(callback);
 
         Block toDeactivate = Advance(currentBlock, minBlocksAhead + 1, !movedForward);
-        if (toDeactivate != null) toDeactivate.GameObject.SetActive(false);
+        if (toDeactivate != null) toDeactivate.hide(callback);
     }
 
     private Block Advance(Block block, int steps, bool forward)
