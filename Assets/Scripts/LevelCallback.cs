@@ -1,10 +1,12 @@
 using UnityEngine;
 
+/*
+ * LevelCallback is an abstract class that defines the interface for handling
+ * the display and hiding of blocks in the level. Level making scripts must 
+ * inherit LevelCallback must implement the show and hide methods.
+ */
 public abstract class LevelCallback : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     public abstract void show(Block block);
-
-    public abstract void hide(Block hide);
+    public abstract void hide(Block block);
 }

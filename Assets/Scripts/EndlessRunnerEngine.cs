@@ -20,15 +20,16 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     public int minBlocksAhead = 5;//The number of visible blocks ahead of the player.
 
-    public int constrainedBlockCount = 50;//The number of blocks to generate in the beginning, in both directions.
+    public int constrainedBlockCount = 10;//The number of blocks to generate in the beginning, in both directions.
 
     //Constraints for the area in which blocks can be generated:
-    public float areaMinX = -5f;
-    public float areaMaxX = 5f;
-    public float areaMinZ = -5f;
-    public float areaMaxZ = 5f;
+    public float areaMinX = -3.2f;
+    public float areaMaxX = 3.2f;
+    public float areaMinZ = -3.2f;
+    public float areaMaxZ = 3.2f;
 
-    public bool showDebugSpace = true;
+    public bool showDebugWalls = true;
+    public bool showBounds = true;
 
     public Block CurrentBlock => currentBlock;
 
@@ -79,11 +80,11 @@ public class EndlessRunnerEngine : MonoBehaviour
         string csvLine = $"{areaMaxX-areaMinX},{areaMaxZ-areaMinZ}";
         System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
         
-        generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, transform);
-        Block startBlock = new Block(startPos, direction, BlockType.Straight, showDebugSpace, transform);
+        generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, showBounds, transform);
+        Block startBlock = new Block(startPos, direction, BlockType.Straight, showDebugWalls, transform);
         for(int i=0;i<1;i++){
 
-            startBlock = new Block(startPos, direction, BlockType.Straight, showDebugSpace, transform);
+            startBlock = new Block(startPos, direction, BlockType.Straight, showDebugWalls, transform);
             
 
         lastBlock = generator.GenerateForward(startBlock, constrainedBlockCount);

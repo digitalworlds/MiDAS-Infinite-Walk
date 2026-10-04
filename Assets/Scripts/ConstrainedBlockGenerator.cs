@@ -25,7 +25,7 @@ public class ConstrainedBlockGenerator
     private readonly int overlapCheckDepth;
     private readonly Transform parent;
 
-    public ConstrainedBlockGenerator(float minX, float maxX, float minZ, float maxZ, int overlapCheckDepth, Transform parent = null)
+    public ConstrainedBlockGenerator(float minX, float maxX, float minZ, float maxZ, int overlapCheckDepth, bool showBounds = true, Transform parent = null)
     {
         this.minX = minX;
         this.maxX = maxX;
@@ -34,7 +34,8 @@ public class ConstrainedBlockGenerator
         this.overlapCheckDepth = overlapCheckDepth;
         this.parent = parent;
 
-        CreateBoundaryLines();
+        if(showBounds)
+            CreateBoundaryLines();
     }
 
     // Draws a closed rectangle around the [minX, maxX] x [minZ, maxZ] area at ground level.

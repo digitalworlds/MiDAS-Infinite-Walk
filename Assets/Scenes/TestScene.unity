@@ -401,7 +401,8 @@ MonoBehaviour:
   areaMaxX: 3.2
   areaMinZ: -3.2
   areaMaxZ: 3.2
-  showDebugSpace: 0
+  showDebugWalls: 0
+  showBounds: 1
 --- !u!4 &743622116
 Transform:
   m_ObjectHideFlags: 0

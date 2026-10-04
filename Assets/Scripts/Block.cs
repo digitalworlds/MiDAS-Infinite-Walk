@@ -46,6 +46,10 @@ public class Block
 
     private readonly bool showDebugSpace;
 
+    //Free variables to be used by the Level Makers
+    public bool isDecorated=false;
+    public int[] decorationIds;
+
     public Block(Vector3 start, Vector2 direction, BlockType type, bool showDebugSpace, Transform parent = null, string name = "Block")
         : this(0, start, direction, type, showDebugSpace, parent, name)
     {
