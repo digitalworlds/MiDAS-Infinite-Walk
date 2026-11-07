@@ -1,3 +1,4 @@
+//using System.Diagnostics;
 using UnityEngine;
 
 // Generates a chain of Blocks while keeping every corner within a rectangular X/Z area, using ordinary
@@ -24,7 +25,7 @@ public class ConstrainedBlockGenerator
     private readonly int overlapCheckDepth;
     private readonly Transform parent;
 
-    public ConstrainedBlockGenerator(float minX, float maxX, float minZ, float maxZ, int overlapCheckDepth, Transform parent = null)
+    public ConstrainedBlockGenerator(float minX, float maxX, float minZ, float maxZ, int overlapCheckDepth, bool showBounds = true, Transform parent = null)
     {
         this.minX = minX;
         this.maxX = maxX;
@@ -33,7 +34,8 @@ public class ConstrainedBlockGenerator
         this.overlapCheckDepth = overlapCheckDepth;
         this.parent = parent;
 
-        CreateBoundaryLines();
+        if(showBounds)
+            CreateBoundaryLines();
     }
 
     // Draws a closed rectangle around the [minX, maxX] x [minZ, maxZ] area at ground level.
@@ -91,15 +93,19 @@ public class ConstrainedBlockGenerator
         }
 
         Vector3[] corners = GetCorners(origin.ExitPosition, origin.ExitDirection);
+        //Debug.Log($"Corners of the new block: {string.Join(", ", corners)}");
         if (!WithinBounds(corners) || OverlapsNearbyBlocks(origin.Previous, false, corners))
         {
             resultTail = null;
+            //Debug.LogWarning("ConstrainedBlockGenerator: origin's exit position is invalid.");
             return false; // no type can fix this - origin's own exit position is invalid
         }
 
         foreach (BlockType candidate in Shuffled(AllowedTypesAfter(origin.Type)))
         {
+            //Debug.Log($"Trying candidate block of type {candidate} after origin of type {origin.Type}");
             Block newBlock = new Block(origin, candidate, parent);
+            //Debug.Log($"Trying candidate block of type {candidate} at position {newBlock.StartPosition} with direction {newBlock.Direction}");
             if (TryGenerateForward(newBlock, remaining - 1, out resultTail))
             {
                 return true;
@@ -110,6 +116,7 @@ public class ConstrainedBlockGenerator
         }
 
         resultTail = null;
+        //Debug.LogWarning("ConstrainedBlockGenerator: failed to generate forward from origin.");
         return false;
     }
 

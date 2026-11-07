@@ -46,6 +46,10 @@ public class Block
 
     private readonly bool showDebugSpace;
 
+    //Free variables to be used by the Level Makers
+    public bool isDecorated=false;
+    public int[] decorationIds;
+
     public Block(Vector3 start, Vector2 direction, BlockType type, bool showDebugSpace, Transform parent = null, string name = "Block")
         : this(0, start, direction, type, showDebugSpace, parent, name)
     {
@@ -118,6 +122,18 @@ public class Block
         //Exit position can be set here, because it is determined by the block type and direction, which are fixed at construction time.
   
         BuildWalls();
+    }
+
+    public void show(LevelCallback callback)
+    {
+        GameObject.SetActive(true);
+        if(callback!=null)callback.show(this);
+    }
+
+    public void hide(LevelCallback callback)
+    {
+        GameObject.SetActive(false);
+        if(callback!=null)callback.hide(this);
     }
 
     // This tile's 4 world-space corners: [start+right, start-right, far+right, far-right], where "far" is

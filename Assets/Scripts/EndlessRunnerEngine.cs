@@ -20,15 +20,16 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     public int minBlocksAhead = 5;//The number of visible blocks ahead of the player.
 
-    public int constrainedBlockCount = 50;//The number of blocks to generate in the beginning, in both directions.
+    public int constrainedBlockCount = 10;//The number of blocks to generate in the beginning, in both directions.
 
     //Constraints for the area in which blocks can be generated:
-    public float areaMinX = -5f;
-    public float areaMaxX = 5f;
-    public float areaMinZ = -5f;
-    public float areaMaxZ = 5f;
+    public float areaMinX = -3.2f;
+    public float areaMaxX = 3.2f;
+    public float areaMinZ = -3.2f;
+    public float areaMaxZ = 3.2f;
 
-    public bool showDebugSpace = true;
+    public bool showDebugWalls = true;
+    public bool showBounds = true;
 
     public Block CurrentBlock => currentBlock;
 
@@ -36,6 +37,10 @@ public class EndlessRunnerEngine : MonoBehaviour
     private Block currentBlock;
     private Block lastBlock;
     private Block firstBlock;
+
+    private ConstrainedBlockGenerator generator;
+
+    private LevelCallback callback;
 
     void Awake()
     {
@@ -46,6 +51,10 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     void Start()
     {
+        LevelCallback c = GetComponent<LevelCallback>(); 
+        if(c!=null && c.enabled) callback=c;
+        
+
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.name = "DebugSphere";
         sphere.SetActive(false);
@@ -58,40 +67,111 @@ public class EndlessRunnerEngine : MonoBehaviour
 
         //Move the starting position to better occupy the space.
         Vector3 startPos=new Vector3(0,0,0);
-        if(Math.Floor((areaMaxX - areaMinX)/1.2) % 2 == 1)
+        if(Math.Floor((areaMaxX - areaMinX)/1.2) % 2 == 0)
         {
-            startPos.x = direction.x * Block.Size * (-0.5f);
+            startPos.x = Block.Size * (0.5f);
         }
        
         if(Math.Floor((areaMaxZ - areaMinZ)/1.2) % 2 == 1)
         {
-            startPos.z = direction.y * Block.Size * (-0.5f);
+            startPos.z = Block.Size * (-0.5f);
         }
+        Debug.Log($"Start Position: {startPos}");
+        string csvLine = $"{areaMaxX-areaMinX},{areaMaxZ-areaMinZ}";
+        System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
         
-        Block startBlock = new Block(startPos, direction, BlockType.Straight, showDebugSpace, transform);
+        generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, showBounds, transform);
+        Block startBlock = new Block(startPos, direction, BlockType.Straight, showDebugWalls, transform);
+        for(int i=0;i<1;i++){
 
-        ConstrainedBlockGenerator generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, transform);
+            startBlock = new Block(startPos, direction, BlockType.Straight, showDebugWalls, transform);
+            
 
         lastBlock = generator.GenerateForward(startBlock, constrainedBlockCount);
         firstBlock = generator.GenerateBackward(startBlock, constrainedBlockCount);
+
+        // count the number of left, right, and straight blocks generated
+        int leftCount = 0;
+        int rightCount = 0;
+        int straightCount = 0;
+        int clockwiseCount = 0;
+        int counterClockwiseCount = 0;
+        int directionSwitches = 0;
+        int zigzagCount = 0;
+
+        int dir = 0;
+        int lastTurn = 0;
+
+        Block b = firstBlock;
+        while (b != null)
+        {
+            switch (b.Type)
+            {
+                case BlockType.TurnLeft:
+                    leftCount++;
+                    if (lastTurn == -1)
+                    {
+                        if(dir == 1)
+                            directionSwitches++;
+                        dir=-1;
+                    }
+                    else if(lastTurn == 1)
+                        zigzagCount++;
+                    lastTurn = -1;
+                    break;
+                case BlockType.TurnRight:
+                    rightCount++;
+                    if (lastTurn == 1)
+                    {
+                        if(dir == -1)
+                            directionSwitches++;
+                        dir=1;
+                    }
+                    else if(lastTurn == -1)
+                        zigzagCount++;
+                    lastTurn = 1;
+                    break;
+                case BlockType.Straight:
+                    straightCount++;
+                    break;
+            }
+            if(dir == 1)
+                clockwiseCount++;
+            else if(dir == -1)
+                counterClockwiseCount++;
+            b = b.Next;
+        }
+        //print into a CSV file the counts of each block type as numbers and percentages
+        csvLine = $"{leftCount},{rightCount},{straightCount},{clockwiseCount},{counterClockwiseCount},{directionSwitches},{zigzagCount}";
+        System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
+        
+        Debug.Log($"Left blocks: {leftCount}, Right blocks: {rightCount}, Straight blocks: {straightCount}");
+        int totalCount = leftCount + rightCount + straightCount;
+        Debug.Log($"Left blocks: {(float)leftCount / totalCount:P2}, Right blocks: {(float)rightCount / totalCount:P2}, Straight blocks: {(float)straightCount / totalCount:P2}");
+        Debug.Log($"Clockwise: {clockwiseCount}, Counter-clockwise: {counterClockwiseCount}");
+        int totalTurns = clockwiseCount + counterClockwiseCount;
+        Debug.Log($"Clockwise: {(float)clockwiseCount / totalTurns:P2}, Counter-clockwise: {(float)counterClockwiseCount / totalTurns:P2}");
+        Debug.Log($"Direction switches: {directionSwitches} , Zigzag count: {zigzagCount}");
+        }
+
         Debug.Log("Blocks generated");
 
         currentBlock = startBlock;
         currentBlock.SetHighlighted(true);
 
         Block block=currentBlock;
-        block.GameObject.SetActive(true);
+        block.show(callback);
         for(int i=0;i<minBlocksAhead;i++)
         {
             block=block.Next;
-            if(block!=null) block.GameObject.SetActive(true);
+            if(block!=null) block.show(callback);
             else break;
         }
         block=currentBlock;
         for(int i=0;i<minBlocksAhead;i++)
         {
             block=block.Previous;
-            if(block!=null) block.GameObject.SetActive(true);
+            if(block!=null) block.show(callback);
             else break;
         }
 
@@ -171,17 +251,16 @@ public class EndlessRunnerEngine : MonoBehaviour
     {
         int count = 0;
         Block b = from;
-        while (b.Next != null && count < minBlocksAhead)
+        Block origin = b;
+        while (b.Next != null && count < minBlocksAhead+4)
         {
             b = b.Next;
+            if (count < minBlocksAhead)
+                origin = b;
             count++;
         }
-
-        while (count < minBlocksAhead)
-        {
-            lastBlock = new Block(lastBlock, RandomBlockType(lastBlock.Type), transform);
-            count++;
-        }
+        origin.DetachNext();
+        lastBlock = generator.GenerateForward(origin, 4);
     }
 
     // Picks a random type for a block adjacent to one of type "neighborType". Two consecutive blocks may
@@ -202,17 +281,17 @@ public class EndlessRunnerEngine : MonoBehaviour
     {
         int count = 0;
         Block b = from;
-        while (b.Previous != null && count < minBlocksAhead)
+        Block origin = b;
+        while (b.Previous != null && count < minBlocksAhead+4)
         {
             b = b.Previous;
+            if (count < minBlocksAhead)
+                origin = b;
             count++;
         }
 
-        while (count < minBlocksAhead)
-        {
-            firstBlock = Block.Prepend(firstBlock, RandomBlockType(firstBlock.Type), transform);
-            count++;
-        }
+        origin.DetachPrevious();
+        firstBlock = generator.GenerateBackward(origin, 4);
     }
 
     // Keeps only minBlocksAhead blocks active on each side of currentBlock: activates the newly needed edge block
@@ -220,10 +299,10 @@ public class EndlessRunnerEngine : MonoBehaviour
     private void UpdateActiveWindow(bool movedForward)
     {
         Block toActivate = Advance(currentBlock, minBlocksAhead, movedForward);
-        if (toActivate != null) toActivate.GameObject.SetActive(true);
+        if (toActivate != null) toActivate.show(callback);
 
         Block toDeactivate = Advance(currentBlock, minBlocksAhead + 1, !movedForward);
-        if (toDeactivate != null) toDeactivate.GameObject.SetActive(false);
+        if (toDeactivate != null) toDeactivate.hide(callback);
     }
 
     private Block Advance(Block block, int steps, bool forward)
