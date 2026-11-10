@@ -77,8 +77,8 @@ public class EndlessRunnerEngine : MonoBehaviour
             startPos.z = Block.Size * (-0.5f);
         }
         Debug.Log($"Start Position: {startPos}");
-        string csvLine = $"{areaMaxX-areaMinX},{areaMaxZ-areaMinZ}";
-        System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
+        //string csvLine = $"{areaMaxX-areaMinX},{areaMaxZ-areaMinZ}";
+        //System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
         
         generator = new ConstrainedBlockGenerator(areaMinX, areaMaxX, areaMinZ, areaMaxZ, minBlocksAhead, showBounds, transform);
         Block startBlock = new Block(startPos, direction, BlockType.Straight, showDebugWalls, transform);
@@ -142,7 +142,7 @@ public class EndlessRunnerEngine : MonoBehaviour
             b = b.Next;
         }
         //print into a CSV file the counts of each block type as numbers and percentages
-        csvLine = $"{leftCount},{rightCount},{straightCount},{clockwiseCount},{counterClockwiseCount},{directionSwitches},{zigzagCount}";
+        /*csvLine = $"{leftCount},{rightCount},{straightCount},{clockwiseCount},{counterClockwiseCount},{directionSwitches},{zigzagCount}";
         System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
         
         Debug.Log($"Left blocks: {leftCount}, Right blocks: {rightCount}, Straight blocks: {straightCount}");
@@ -151,7 +151,7 @@ public class EndlessRunnerEngine : MonoBehaviour
         Debug.Log($"Clockwise: {clockwiseCount}, Counter-clockwise: {counterClockwiseCount}");
         int totalTurns = clockwiseCount + counterClockwiseCount;
         Debug.Log($"Clockwise: {(float)clockwiseCount / totalTurns:P2}, Counter-clockwise: {(float)counterClockwiseCount / totalTurns:P2}");
-        Debug.Log($"Direction switches: {directionSwitches} , Zigzag count: {zigzagCount}");
+        Debug.Log($"Direction switches: {directionSwitches} , Zigzag count: {zigzagCount}");*/
         }
 
         Debug.Log("Blocks generated");
