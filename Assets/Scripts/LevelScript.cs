@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class LevelScript : LevelCallback
@@ -25,28 +26,43 @@ public class LevelScript : LevelCallback
 
     void CreateLeftTurn(Block b)
     {
-        b.decorationIds[0] = Random.Range(0, leftTurns.Length);
+        if(!b.isDecorated)
+        {
+            b.isDecorated = true;
+            b.decorationIds[0] = Random.Range(0, leftTurns.Length);
+        }
         InstantiateObject(leftTurns[b.decorationIds[0]],b);
     }
 
     void CreateRightTurn(Block b)
     {
-        b.decorationIds[0] = Random.Range(0, rightTurns.Length);
+        if(!b.isDecorated)
+        {
+            b.isDecorated = true;
+            b.decorationIds[0] = Random.Range(0, rightTurns.Length);
+        }
         InstantiateObject(rightTurns[b.decorationIds[0]],b);
     }
 
     void CreateStraight(Block b)
     {
-        b.decorationIds[0] = Random.Range(0, Straights.Length);
+        if(!b.isDecorated)
+        {
+            b.isDecorated = true;
+            b.decorationIds[0] = Random.Range(0, Straights.Length);
+        }
         InstantiateObject(Straights[b.decorationIds[0]],b);
     }
 
     public override void show(Block b)
     {
-        if(b.isDecorated)return;
+        //It has already been built, so we don't need to build it again
+        if(b.GameObject.transform.childCount > 0)return;
         
-        b.isDecorated = true;
-        b.decorationIds = new int[3];
+        if(b.decorationIds == null || b.decorationIds.Length != 3)
+        {
+            b.decorationIds = new int[3];
+        }
 
         if(b.type == BlockType.TurnLeft)
         {
@@ -64,7 +80,12 @@ public class LevelScript : LevelCallback
 
     public override void hide(Block b)
     {
-        
+        //destroy all children of the block's game object
+        foreach(Transform child in b.GameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
     }
 
     // Update is called once per frame

@@ -91,7 +91,7 @@ public class EndlessRunnerEngine : MonoBehaviour
         firstBlock = generator.GenerateBackward(startBlock, constrainedBlockCount);
 
         // count the number of left, right, and straight blocks generated
-        int leftCount = 0;
+        /*int leftCount = 0;
         int rightCount = 0;
         int straightCount = 0;
         int clockwiseCount = 0;
@@ -140,7 +140,7 @@ public class EndlessRunnerEngine : MonoBehaviour
             else if(dir == -1)
                 counterClockwiseCount++;
             b = b.Next;
-        }
+        }*/
         //print into a CSV file the counts of each block type as numbers and percentages
         /*csvLine = $"{leftCount},{rightCount},{straightCount},{clockwiseCount},{counterClockwiseCount},{directionSwitches},{zigzagCount}";
         System.IO.File.AppendAllText("block_counts.csv", csvLine + "\n");
