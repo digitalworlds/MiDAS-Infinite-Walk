@@ -3,7 +3,22 @@ guid: caad39540f9aaad468bccb8d11398c90
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlassSeeThrough
+    second: {fileID: 2100000, guid: d729add34217fe848b370471e41b3a04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kelp
+    second: {fileID: 2100000, guid: 38339d4b4ae94a14c902af1406da3333, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: e893021283a3df146bd4c635f7032838, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
