@@ -3,7 +3,37 @@ guid: bf91d24ad17b08046bf76e12b865d098
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FishBody
+    second: {fileID: 2100000, guid: ecae80baa11c2b141ba0a60685db1855, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FishEye
+    second: {fileID: 2100000, guid: b0e6728e5215edf439e8a5fd104aba27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FishFin
+    second: {fileID: 2100000, guid: da3b5c857f0f7e84d82c07cbc4c3e1c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlassSeeThrough
+    second: {fileID: 2100000, guid: b2b1a95319d6c31438b3f389307755eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LavaLampWaxGreen
+    second: {fileID: 2100000, guid: 3ad89bcf8bfbdd44c97bf518d1dca057, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 37f5953d7424bc8478b7fe09b56bc241, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
