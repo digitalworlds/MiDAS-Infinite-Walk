@@ -263,13 +263,19 @@ public class Block
     public void DetachNext()
     {
         if (Next == null) return;
+        Next.DetachNext();
         Next.Previous = null;
+        Object.Destroy(Next.GameObject);
         Next = null;
     }
 
     // Detaches Previous. This block's own walls are untouched - they never depended on Previous.
     public void DetachPrevious()
     {
+        if (Previous == null) return;
+        Previous.DetachPrevious();
+        Previous.Next = null;
+        Object.Destroy(Previous.GameObject);
         Previous = null;
     }
 
