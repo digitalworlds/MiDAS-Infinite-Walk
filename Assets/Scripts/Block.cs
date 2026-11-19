@@ -124,13 +124,13 @@ public class Block
         BuildWalls();
     }
 
-    public void show(LevelCallback callback)
+    public void show(ThemeCallback callback)
     {
         GameObject.SetActive(true);
         if(callback!=null)callback.show(this);
     }
 
-    public void hide(LevelCallback callback)
+    public void hide(ThemeCallback callback)
     {
         GameObject.SetActive(false);
         if(callback!=null)callback.hide(this);

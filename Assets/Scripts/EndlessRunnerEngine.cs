@@ -67,13 +67,13 @@ public class EndlessRunnerEngine : MonoBehaviour
             }
         }
         themes = new ThemeCallback[enabledCount];
-        int i = 0;
+        int j = 0;
         foreach(ThemeCallback cb in callbacks)
         {
             if(cb != null && cb.enabled)
             {
-                themes[i] = cb;
-                i++;
+                themes[j] = cb;
+                j++;
             }
         }
         currentThemeCallback=themes[UnityEngine.Random.Range(0, themes.Length)];
@@ -184,18 +184,18 @@ public class EndlessRunnerEngine : MonoBehaviour
         currentBlock.SetHighlighted(true);
 
         Block block=currentBlock;
-        block.show(callback);
+        block.show(currentThemeCallback);
         for(int i=0;i<minBlocksAhead;i++)
         {
             block=block.Next;
-            if(block!=null) block.show(callback);
+            if(block!=null) block.show(currentThemeCallback);
             else break;
         }
         block=currentBlock;
         for(int i=0;i<minBlocksAhead;i++)
         {
             block=block.Previous;
-            if(block!=null) block.show(callback);
+            if(block!=null) block.show(currentThemeCallback);
             else break;
         }
 
@@ -338,10 +338,10 @@ public class EndlessRunnerEngine : MonoBehaviour
     private void UpdateActiveWindow(bool movedForward)
     {
         Block toActivate = Advance(currentBlock, minBlocksAhead, movedForward);
-        if (toActivate != null) toActivate.show(callback);
+        if (toActivate != null) toActivate.show(currentThemeCallback);
 
         Block toDeactivate = Advance(currentBlock, minBlocksAhead + 1, !movedForward);
-        if (toDeactivate != null) toDeactivate.hide(callback);
+        if (toDeactivate != null) toDeactivate.hide(currentThemeCallback);
     }
 
     private Block Advance(Block block, int steps, bool forward)

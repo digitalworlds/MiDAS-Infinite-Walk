@@ -1,7 +1,7 @@
 using System.Diagnostics.Contracts;
 using UnityEngine;
 
-public class VoidLevelScript : LevelCallback
+public class VoidLevelScript : ThemeCallback
 {
     public GameObject floor;
 
