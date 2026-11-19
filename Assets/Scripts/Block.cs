@@ -9,6 +9,13 @@ public enum BlockType
     TurnRight
 }
 
+public enum BlockSubType
+{
+    Normal,
+    Entrance,
+    Exit
+}
+
 public class Block
 {
     // Every block is a fixed-size square tile. All blocks share this same size.
@@ -18,6 +25,7 @@ public class Block
     private readonly Vector3 startPosition;
     private readonly Vector2 direction2D; // entry direction, (x, z) in the flat plane
     public readonly BlockType type;
+    public BlockSubType subType = BlockSubType.Normal;
 
     private LineRenderer[] wallLines;
     private MeshFilter[] wallMeshFilters;
