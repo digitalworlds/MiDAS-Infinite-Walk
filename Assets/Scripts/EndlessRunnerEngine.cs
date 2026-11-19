@@ -40,7 +40,10 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     private ConstrainedBlockGenerator generator;
 
-    private LevelCallback callback;
+    private ThemeCallback currentThemeCallback;
+    ThemeCallback[] themes;
+
+    private int themeBlockCount = 0;
 
     void Awake()
     {
@@ -51,8 +54,29 @@ public class EndlessRunnerEngine : MonoBehaviour
 
     void Start()
     {
-        LevelCallback c = GetComponent<LevelCallback>(); 
-        if(c!=null && c.enabled) callback=c;
+
+        //get all ThemeCallback components in this object
+        ThemeCallback[] callbacks = GetComponents<ThemeCallback>();
+
+        int enabledCount = 0;
+        foreach(ThemeCallback cb in callbacks)
+        {
+            if(cb != null && cb.enabled)
+            {
+                enabledCount++;
+            }
+        }
+        themes = new ThemeCallback[enabledCount];
+        int i = 0;
+        foreach(ThemeCallback cb in callbacks)
+        {
+            if(cb != null && cb.enabled)
+            {
+                themes[i] = cb;
+                i++;
+            }
+        }
+        currentThemeCallback=themes[UnityEngine.Random.Range(0, themes.Length)];
         
 
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -206,7 +230,7 @@ public class EndlessRunnerEngine : MonoBehaviour
                 EnsureBlocksBehind(currentBlock);
                 UpdateActiveWindow(movedForward: false);
                 if(debugText!=null)debugText.text = ""+currentBlock.Id;
-                Debug.Log("Went back to block "+currentBlock.Id+ " "+currentBlock.Type);
+                Debug.Log("Went back to block "+currentBlock.Id+ " "+currentBlock.Type+" "+themeBlockCount);
             }
             //If we have moved past the end of the current block, move to the next block. 
             else if (!beforeEnd && currentBlock.Next != null)
@@ -217,7 +241,7 @@ public class EndlessRunnerEngine : MonoBehaviour
                 EnsureBlocksAhead(currentBlock);
                 UpdateActiveWindow(movedForward: true);
                 if(debugText!=null)debugText.text = ""+currentBlock.Id;
-                Debug.Log("Went forward to block "+currentBlock.Id+ " "+currentBlock.Type);
+                Debug.Log("Went forward to block "+currentBlock.Id+ " "+currentBlock.Type+" "+themeBlockCount);
             }
         }
 
@@ -259,6 +283,21 @@ public class EndlessRunnerEngine : MonoBehaviour
                 origin = b;
             count++;
         }
+        if(origin.type == BlockType.Straight && origin.Previous.type == BlockType.Straight)
+        {
+            if(themeBlockCount >= 10)
+            {
+                Debug.Log("Theme block count reached "+themeBlockCount+", selecting new theme");
+                themeBlockCount=0;
+                ThemeCallback newTheme = currentThemeCallback;
+                while(newTheme == currentThemeCallback)
+                {
+                    newTheme = themes[UnityEngine.Random.Range(0, themes.Length)];
+                }
+                currentThemeCallback = newTheme;
+            }
+        }
+        themeBlockCount++;
         origin.DetachNext();
         lastBlock = generator.GenerateForward(origin, 4);
     }
