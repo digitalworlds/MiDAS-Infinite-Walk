@@ -7,6 +7,9 @@ public class MilesTheme : ThemeCallback
     public GameObject[] leftTurns;
     public GameObject[] rightTurns;
     public GameObject[] Straights;
+    public GameObject[] Exits;
+    public GameObject[] Entrances;
+
     
     void Start()
     {
@@ -54,6 +57,26 @@ public class MilesTheme : ThemeCallback
         InstantiateObject(Straights[b.decorationIds[0]],b);
     }
 
+    void CreateExit(Block b)
+    {
+        if(!b.isDecorated)
+        {
+            b.isDecorated = true;
+            b.decorationIds[0] = Random.Range(0, Exits.Length);
+        }
+        InstantiateObject(Exits[b.decorationIds[0]],b);
+    }
+
+    void CreateEntrance(Block b)
+    {
+        if(!b.isDecorated)
+        {
+            b.isDecorated = true;
+            b.decorationIds[0] = Random.Range(0, Exits.Length);
+        }
+        InstantiateObject(Exits[b.decorationIds[0]],b);
+    }
+
     public override void show(Block b)
     {
         //It has already been built, so we don't need to build it again
@@ -74,7 +97,18 @@ public class MilesTheme : ThemeCallback
         }
         else if(b.type == BlockType.Straight)
         {
-            CreateStraight(b);
+            if(b.subType == BlockSubType.Entrance)
+            {
+                CreateEntrance(b);
+            }
+            else if(b.subType == BlockSubType.Exit)
+            {
+                CreateExit(b);
+            }
+            else
+            {
+                CreateStraight(b);
+            }
         }
     }
 
