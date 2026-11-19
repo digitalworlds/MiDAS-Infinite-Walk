@@ -1058,9 +1058,8 @@ GameObject:
   - component: {fileID: 743622116}
   - component: {fileID: 743622115}
   - component: {fileID: 743622117}
-  - component: {fileID: 743622119}
-  - component: {fileID: 743622118}
   - component: {fileID: 743622120}
+  - component: {fileID: 743622121}
   m_Layer: 0
   m_Name: EndlessRunnerSpace
   m_TagString: Untagged
@@ -1131,39 +1130,6 @@ MonoBehaviour:
   - {fileID: 1970666238}
   Entrances:
   - {fileID: 241758044}
---- !u!114 &743622118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743622114}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad00833810f97f34f8e801605bbf5b6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SofiaTheme
-  leftTurns: []
-  rightTurns: []
-  Straights: []
---- !u!114 &743622119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743622114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9bba55a686e17459e0a23444e4273d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReaganTheme
-  leftTurns:
-  - {fileID: 356169138}
-  rightTurns:
-  - {fileID: 356169137}
-  Straights:
-  - {fileID: 356169136}
 --- !u!114 &743622120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,6 +1150,26 @@ MonoBehaviour:
   - {fileID: 356169136}
   Exits:
   - {fileID: 1223725212}
+  Entrances: []
+--- !u!114 &743622121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743622114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6cf54aab8e444fb077d0ce72e7dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyTheme
+  leftTurns:
+  - {fileID: 0}
+  rightTurns:
+  - {fileID: 0}
+  Straights:
+  - {fileID: 0}
+  Exits: []
   Entrances: []
 --- !u!1 &841895022
 GameObject:
