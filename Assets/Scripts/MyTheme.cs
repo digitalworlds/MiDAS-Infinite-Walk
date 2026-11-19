@@ -2,7 +2,7 @@ using System.Diagnostics.Contracts;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class LevelScript : LevelCallback
+public class MyTheme : ThemeCallback
 {
     public GameObject[] leftTurns;
     public GameObject[] rightTurns;
