@@ -2,7 +2,7 @@ using System.Diagnostics.Contracts;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class MyTheme : ThemeCallback
+public class MilesTheme : ThemeCallback
 {
     public GameObject[] leftTurns;
     public GameObject[] rightTurns;
