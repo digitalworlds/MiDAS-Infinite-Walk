@@ -440,6 +440,78 @@ Transform:
   - {fileID: 461408499}
   m_Father: {fileID: 1985954044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &356169135
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 174070155184415066, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_Name
+      value: Reagan Blocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.18599
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.31071
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315848081442976197, guid: f226341d8fa7fe24284709909a273016, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f226341d8fa7fe24284709909a273016, type: 3}
+--- !u!1 &356169136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7812320618946856462, guid: f226341d8fa7fe24284709909a273016, type: 3}
+  m_PrefabInstance: {fileID: 356169135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &356169137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7532171628081183774, guid: f226341d8fa7fe24284709909a273016, type: 3}
+  m_PrefabInstance: {fileID: 356169135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &356169138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4128096999169346907, guid: f226341d8fa7fe24284709909a273016, type: 3}
+  m_PrefabInstance: {fileID: 356169135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &444897717
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +956,8 @@ GameObject:
   - component: {fileID: 743622116}
   - component: {fileID: 743622115}
   - component: {fileID: 743622117}
+  - component: {fileID: 743622119}
+  - component: {fileID: 743622118}
   m_Layer: 0
   m_Name: EndlessRunnerSpace
   m_TagString: Untagged
@@ -950,6 +1024,39 @@ MonoBehaviour:
   - {fileID: 52430958}
   - {fileID: 2003757555}
   - {fileID: 585147714}
+--- !u!114 &743622118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743622114}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad00833810f97f34f8e801605bbf5b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SofiaTheme
+  leftTurns: []
+  rightTurns: []
+  Straights: []
+--- !u!114 &743622119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743622114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9bba55a686e17459e0a23444e4273d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReaganTheme
+  leftTurns:
+  - {fileID: 356169138}
+  rightTurns:
+  - {fileID: 356169137}
+  Straights:
+  - {fileID: 356169136}
 --- !u!1 &841895022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,3 +2600,4 @@ SceneRoots:
   - {fileID: 1247604802}
   - {fileID: 182506315}
   - {fileID: 1975687075}
+  - {fileID: 356169135}
