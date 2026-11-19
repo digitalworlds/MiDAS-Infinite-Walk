@@ -9,7 +9,6 @@ public class MilesTheme : ThemeCallback
     public GameObject[] Straights;
     public GameObject[] Exits;
     public GameObject[] Entrances;
-
     
     void Start()
     {
@@ -19,6 +18,7 @@ public class MilesTheme : ThemeCallback
 
     void InstantiateObject(GameObject o, Block b)
     {
+        Debug.Log("Instantiating object "+o+" for block "+b.Id);
         GameObject obj = Instantiate(o);
         obj.transform.localPosition = new Vector3(0f,0f,0.6f);
         obj.transform.localRotation = Quaternion.identity;
@@ -59,8 +59,10 @@ public class MilesTheme : ThemeCallback
 
     void CreateExit(Block b)
     {
+        Debug.Log("Creating exit for block "+b.Id);
         if(!b.isDecorated)
         {
+            Debug.Log("Block "+b.Id+"is not decorated, decorating now");
             b.isDecorated = true;
             b.decorationIds[0] = Random.Range(0, Exits.Length);
         }
@@ -69,18 +71,21 @@ public class MilesTheme : ThemeCallback
 
     void CreateEntrance(Block b)
     {
+        Debug.Log("Creating entrance for block "+b.Id);
         if(!b.isDecorated)
         {
+            Debug.Log("Block "+b.Id+"is not decorated, decorating now");
             b.isDecorated = true;
-            b.decorationIds[0] = Random.Range(0, Exits.Length);
+            b.decorationIds[0] = Random.Range(0, Entrances.Length);
         }
-        InstantiateObject(Exits[b.decorationIds[0]],b);
+        InstantiateObject(Entrances[b.decorationIds[0]],b);
     }
 
     public override void show(Block b)
     {
+        Debug.Log("Showing block "+b.Id);
         //It has already been built, so we don't need to build it again
-        if(b.GameObject.transform.childCount > 0)return;
+        if(b.GameObject.transform.childCount > 0){ Debug.Log("It has children so we do not decorate it");return;}
         
         if(b.decorationIds == null || b.decorationIds.Length != 3)
         {
@@ -115,9 +120,11 @@ public class MilesTheme : ThemeCallback
     public override void hide(Block b)
     {
         //destroy all children of the block's game object
-        foreach(Transform child in b.GameObject.transform)
+        for(int i = b.GameObject.transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(child.gameObject);
+            Transform child = b.GameObject.transform.GetChild(i);
+            child.SetParent(null, false); // detach now so childCount updates immediately
+            Destroy(child.gameObject);   // actual destruction happens at end of frame
         }
 
     }

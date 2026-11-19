@@ -290,9 +290,9 @@ public class EndlessRunnerEngine : MonoBehaviour
                 Debug.Log("Theme block count reached "+themeBlockCount+", selecting new theme");
                 origin.subType = BlockSubType.Entrance;
                 origin.Previous.subType = BlockSubType.Exit;
-                origin.Previous.Previous.isDecorated = false;
-                origin.Previous.Previous.hide(currentThemeCallback);
-                origin.Previous.Previous.show(currentThemeCallback);
+                origin.Previous.hide(currentThemeCallback);
+                origin.Previous.isDecorated = false;
+                origin.Previous.show(currentThemeCallback);
                 themeBlockCount=0;
                 ThemeCallback newTheme = currentThemeCallback;
                 while(newTheme == currentThemeCallback)

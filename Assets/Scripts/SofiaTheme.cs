@@ -81,9 +81,11 @@ public class SofiaTheme : ThemeCallback
     public override void hide(Block b)
     {
         //destroy all children of the block's game object
-        foreach(Transform child in b.GameObject.transform)
+        for(int i = b.GameObject.transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(child.gameObject);
+            Transform child = b.GameObject.transform.GetChild(i);
+            child.SetParent(null, false); // detach now so childCount updates immediately
+            Destroy(child.gameObject);   // actual destruction happens at end of frame
         }
 
     }

@@ -134,6 +134,7 @@ public class Block
 
     public void show(ThemeCallback callback)
     {
+        Debug.Log("Showing block "+id);
         GameObject.SetActive(true);
         if(callback!=null)callback.show(this);
     }

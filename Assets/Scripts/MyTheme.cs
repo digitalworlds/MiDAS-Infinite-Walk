@@ -71,9 +71,9 @@ public class MyTheme : ThemeCallback
         if(!b.isDecorated)
         {
             b.isDecorated = true;
-            b.decorationIds[0] = Random.Range(0, Exits.Length);
+            b.decorationIds[0] = Random.Range(0, Entrances.Length);
         }
-        InstantiateObject(Exits[b.decorationIds[0]],b);
+        InstantiateObject(Entrances[b.decorationIds[0]],b);
     }
 
     public override void show(Block b)
@@ -114,9 +114,11 @@ public class MyTheme : ThemeCallback
     public override void hide(Block b)
     {
         //destroy all children of the block's game object
-        foreach(Transform child in b.GameObject.transform)
+        for(int i = b.GameObject.transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(child.gameObject);
+            Transform child = b.GameObject.transform.GetChild(i);
+            child.SetParent(null, false); // detach now so childCount updates immediately
+            Destroy(child.gameObject);   // actual destruction happens at end of frame
         }
 
     }
